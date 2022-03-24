@@ -3,7 +3,7 @@ const express= require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const cors = require("cors");
-const dotenv = require("dotenv");
+require("dotenv").config();
 
 const app=express();
 
@@ -14,17 +14,17 @@ const PORT = process.env.PORT||8080;
 
 // Use declared dependencies
 app.use(cors());
-app.use(bodyParser.json);
+app.use(bodyParser.json());
 
 // get url from .env file
 const URL=process.env.MONGODB_URL;
 
 // connect to mongodb database
 mongoose.connect(URL,{
-    useCreateIndex:true,
+    //useCreateIndex:true,
     useNewUrlParser:true,
-    useUnifiedTopologyL:true,
-    useFindAndModify:false
+    //useUnifiedTopologyL:true,
+    //useFindAndModify:false
 });
 
 // Created a connection and open
