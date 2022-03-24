@@ -14,3 +14,6 @@ const PORT = process.env.PORT||8080;
 
 app.use(cors());
 app.use(bodyParser.json);
+
+// connected mongodb database
+const URL=process.env.MONGODB_URL;
