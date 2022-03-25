@@ -33,3 +33,9 @@ connection.once("open",()=>{ console.log("Mongodb Connection Success!")});
 
 // once database is connected add listen connection to the port
 app.listen(PORT,()=>{console.log(`Server is up and running on port ${PORT}`)});
+
+//import studentRoutes.js
+const studentRouter = require("./routes/studentRoutes");
+
+// parameters : 
+app.use("/student", studentRouter);
