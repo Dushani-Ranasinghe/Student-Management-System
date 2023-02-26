@@ -70,5 +70,19 @@ router.route("/update/:id").put(
     // const update = await Student.findByIdAndUpdate(userId,  {name,dob,gender,indexNumber});
   }
 );
+
 //Delete students
+router.route("/delete/:id").delete(async (req, response) => {
+  let userId = req.params.id;
+  await Student.findByIdAndDelete(userId)
+    .then(() => {
+      response.status(200).send({ status: "User deleted" });
+    })
+    .catch(() => (err) => {
+      //show error in console
+      console.log(err);
+      //send error to frontend
+      respose.status(500).send({ status: "Error with deleting data" });
+    });
+});
 module.exports = router;
