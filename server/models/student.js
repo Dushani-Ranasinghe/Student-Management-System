@@ -2,7 +2,7 @@
 // to connect to the database use mongoose
 const mongoose = require('mongoose');
 
-// deckare schema variable to store data
+// declare schema variable to store data
 const schema = mongoose.Schema;
 
 // properties of student

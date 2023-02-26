@@ -4,7 +4,8 @@
   "description": "student management system backend",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon server.js"
+    "start": "nodemon server.js",
+    "dev":"nodemon server.js"
   },
   "author": "Dushani-Ranasinghe",
   "license": "ISC",

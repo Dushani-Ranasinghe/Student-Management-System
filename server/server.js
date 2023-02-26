@@ -31,11 +31,12 @@ mongoose.connect(URL,{
 const connection=mongoose.connection;
 connection.once("open",()=>{ console.log("Mongodb Connection Success!")});
 
-// once database is connected add listen connection to the port
+// // once database is connected add listen connection to the port
 app.listen(PORT,()=>{console.log(`Server is up and running on port ${PORT}`)});
 
-//import studentRoutes.js
+// //import studentRoutes.js
 const studentRouter = require("./routes/studentRoutes");
 
-// parameters : 
+// // parameters :
+//load /student file 
 app.use("/student", studentRouter);
