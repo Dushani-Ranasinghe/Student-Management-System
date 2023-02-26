@@ -1,5 +1,6 @@
 const router = require("express").Router();
 
+const { response } = require("express");
 // import models
 let Student = require("../models/student");
 
@@ -32,7 +33,7 @@ router.route("/add").post((req, response) => {
     });
 });
 
-//Get students
+//Get all students
 router.route("/").get((response) => {
   Student.find()
     .then((students) => {
@@ -46,7 +47,7 @@ router.route("/").get((response) => {
 //Update students
 router.route("/update/:id").put(
   //async function
-  async (req, respose) => {
+  async (req, response) => {
     //req.params -> id comes from url as a parameter, fetch it
     let userId = req.params.id;
     // using de structer
@@ -58,13 +59,13 @@ router.route("/update/:id").put(
     //first method
     const update = await Student.findByIdAndUpdate(userId, updateStudent)
       .then(() => {
-        respose.status(200).send({ status: "User Updated", user: update });
+        response.status(200).send({ status: "User Updated", user: update });
       })
       .catch(() => (err) => {
         //show error in console
         console.log(err);
         //send error to frontend
-        respose.status(500).send({ status: "Error with updating data" });
+        response.status(500).send({ status: "Error with updating data" });
       });
     //second method
     // const update = await Student.findByIdAndUpdate(userId,  {name,dob,gender,indexNumber});
@@ -82,7 +83,24 @@ router.route("/delete/:id").delete(async (req, response) => {
       //show error in console
       console.log(err);
       //send error to frontend
-      respose.status(500).send({ status: "Error with deleting data" });
+      response.status(500).send({ status: "Error with deleting data" });
     });
 });
+
+//get one student data
+router.route("/get/:id").get(
+    async (req,response)=>{
+        let userId = req.params.id;
+        const user = await Student.findById(userId).then(
+            response.status(200).send({status: "User Fetched", user:user})
+        ).catch(() => (err) => {
+            //show error in console
+            console.log(err);
+            //send error to frontend
+            response.status(500).send({ status: "Error with getting single data"});
+          });
+          
+    }
+)
+
 module.exports = router;
