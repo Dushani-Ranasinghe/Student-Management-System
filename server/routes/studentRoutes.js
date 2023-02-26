@@ -8,8 +8,7 @@ let Student = require("../models/student");
 //http://localhost:8080/student/add URL for add crud operation
 //POST http request
 //can use GET. but less security .can access during request
-router.route("/add").post(
-    async (req, response) => {
+router.route("/add").post(async (req, response) => {
   const name = req.body.name;
   //   const dob = Date.body.dob;
   const gender = req.body.gender;
@@ -34,11 +33,10 @@ router.route("/add").post(
 });
 
 //Get all students
-router.route("/").get(
-    async(response) => {
+router.route("/").get(async (response) => {
   await Student.find()
-    .then((students) => {
-      response.json(students);
+    .then(() => {
+    //   response.json("display students.");
     })
     .catch((err) => {
       console.log(err);
@@ -91,8 +89,8 @@ router.route("/delete/:id").delete(async (req, response) => {
 //get one student data
 router.route("/get/:id").get(async (req, response) => {
   let userId = req.params.id;
-  const user = await Student.findById(userId)
-    .then(response.status(200).send({ status: "User Fetched", user: user }))
+   await Student.findById(userId)
+    .then(response.status(200).send({ status: "User Fetched"}))
     .catch(() => (err) => {
       //show error in console
       console.log(err);
